@@ -1,11 +1,17 @@
 import React from "react";
 import "./BookCard.css"; 
 
-function SearchBook({ books,loader }) {
+function SearchBook({ books,loader,search }) {
   if(loader){
-  return  <div className="loader">loading</div>
+  return ( 
+  <div className="loader-container">
+  <div className="spinner">loading</div>
+  </div>
+  );  
+}
+    if (!search) {
+    return null;
   }
-  //kjgjhfgjkklbji
   
   if (!books || books.length === 0) {
     return <p>No books found</p>;
@@ -13,7 +19,7 @@ function SearchBook({ books,loader }) {
 
   return (
     <div className="book-list">
-      {books.map((item) => {
+       {books.map((item) => {
         const info = item.volumeInfo;
         return (
           <div key={item.id} className="book-card">
@@ -27,6 +33,7 @@ function SearchBook({ books,loader }) {
       })}
     </div>
   );
+ 
 }
 
 export default SearchBook;
